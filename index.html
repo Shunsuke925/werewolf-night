@@ -18,106 +18,106 @@
     background:radial-gradient(circle at 20% 0%, rgba(184,166,255,.14), transparent 42%),
                radial-gradient(circle at 85% 100%, rgba(255,93,93,.12), transparent 44%), var(--bg);
     color:var(--lav); font-family:"Segoe UI",system-ui,sans-serif; min-height:100%;
-    display:flex; flex-direction:column; align-items:center; padding:max(3vh,18px) 18px 90px;
+    display:flex; flex-direction:column; align-items:center; padding:max(3vh,16px) 16px 80px;
   }
   .wrap{width:100%; max-width:560px;}
-  h1{font-family:Georgia,serif; color:#fff; text-align:center; font-size:2.4rem; line-height:1.05; letter-spacing:.01em;}
-  .moon{font-size:2.2rem; display:block; text-align:center; margin-bottom:.2rem;}
-  .tag{color:var(--gold); text-align:center; letter-spacing:.28em; text-transform:uppercase; font-size:.8rem; font-weight:800; margin-bottom:1.6rem;}
+  h1{font-family:Georgia,serif; color:#fff; text-align:center; font-size:2.3rem; line-height:1.05;}
+  .moon{font-size:2.1rem; display:block; text-align:center; margin-bottom:.2rem;}
+  .tag{color:var(--gold); text-align:center; letter-spacing:.26em; text-transform:uppercase; font-size:.78rem; font-weight:800; margin-bottom:1.4rem;}
   .hidden{display:none !important;}
 
-  .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; margin-bottom:16px; box-shadow:0 10px 30px rgba(0,0,0,.3);}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; margin-bottom:14px; box-shadow:0 10px 30px rgba(0,0,0,.3);}
   label{display:block; font-size:.85rem; color:var(--muted); margin-bottom:6px; font-weight:600;}
-  input[type=text],input[type=password]{width:100%; background:var(--bg2); color:#fff; border:2px solid var(--line);
-    border-radius:12px; padding:14px 16px; font-size:1.1rem; font-family:inherit;}
+  input{width:100%; background:var(--bg2); color:#fff; border:2px solid var(--line); border-radius:12px; padding:14px 16px; font-size:1.1rem; font-family:inherit;}
   input:focus{outline:none; border-color:var(--purple);}
 
-  .btn{display:block; width:100%; cursor:pointer; border:none; border-radius:14px; padding:16px;
-    font-family:Georgia,serif; font-weight:bold; font-size:1.2rem; transition:.15s; margin-top:6px;}
+  .btn{display:block; width:100%; cursor:pointer; border:none; border-radius:14px; padding:15px; font-family:Georgia,serif; font-weight:bold; font-size:1.15rem; transition:.15s; margin-top:8px;}
   .btn.primary{background:linear-gradient(180deg,#C7B5FF,#9B7BFF); color:#15122b; box-shadow:0 8px 22px rgba(155,123,255,.35);}
   .btn.gold{background:linear-gradient(180deg,#FFD45A,#FFB81F); color:#1a1530; box-shadow:0 8px 22px rgba(255,184,31,.32);}
-  .btn.ghost{background:transparent; border:2px solid var(--line); color:var(--lav); font-family:"Segoe UI",sans-serif; font-size:1rem;}
   .btn.red{background:linear-gradient(180deg,#FF7B7B,#F0454F); color:#fff;}
-  .btn:active{transform:translateY(1px);}
-  .btn:disabled{opacity:.45; cursor:default;}
+  .btn.ghost{background:transparent; border:2px solid var(--line); color:var(--lav); font-family:"Segoe UI",sans-serif; font-size:1rem;}
+  .btn:active{transform:translateY(1px);} .btn:disabled{opacity:.45; cursor:default;}
   .btn.sm{padding:10px; font-size:.95rem; border-radius:10px;}
-
   .row{display:flex; gap:10px;} .row>*{flex:1;}
+
   .info-btns{display:flex; gap:10px; margin-top:4px;}
-  .info-btns button{flex:1; background:var(--card2); border:1px solid var(--line); color:var(--lav);
-    border-radius:12px; padding:13px; font-size:1rem; cursor:pointer; font-weight:600;}
+  .info-btns button{flex:1; background:var(--card2); border:1px solid var(--line); color:var(--lav); border-radius:12px; padding:12px; font-size:.98rem; cursor:pointer; font-weight:600;}
   .info-btns button:active{transform:translateY(1px);}
+  .muted{color:var(--muted); font-size:.92rem; line-height:1.5;} .center{text-align:center;}
+  .pill{display:inline-block; padding:4px 11px; border-radius:20px; font-size:.78rem; font-weight:700;}
+  .banner{background:var(--card2); border:1px dashed var(--line); border-radius:12px; padding:11px 13px; font-size:.9rem; color:var(--gold); text-align:center; margin-bottom:12px;}
 
-  .muted{color:var(--muted); font-size:.92rem; line-height:1.5;}
-  .center{text-align:center;}
-  .pill{display:inline-block; padding:5px 12px; border-radius:20px; font-size:.8rem; font-weight:700; letter-spacing:.04em;}
+  /* phase stage */
+  .phase-head{text-align:center; margin-bottom:12px;}
+  .phase-kicker{letter-spacing:.22em; text-transform:uppercase; font-weight:800; font-size:.8rem;}
+  .phase-title{font-family:Georgia,serif; color:#fff; font-size:1.7rem; margin-top:3px;}
+  .clock{display:inline-flex; align-items:center; gap:7px; margin-top:10px; background:var(--card2); border:1px solid var(--line); border-radius:30px; padding:6px 16px; font-weight:800; font-size:1.2rem; color:var(--gold); font-variant-numeric:tabular-nums;}
+  .clock.low{color:var(--red); border-color:var(--red);}
+  .night{--accent:#8d86ff;} .day{--accent:var(--gold);}
 
-  /* role reveal card */
-  .role-big{text-align:center; padding:26px 20px;}
-  .role-emoji{font-size:5rem; line-height:1; margin-bottom:6px;}
-  .role-name{font-family:Georgia,serif; font-size:2.2rem; color:#fff; font-weight:bold;}
-  .role-team{margin:10px auto 14px; }
-  .role-desc{font-size:1.05rem; line-height:1.55; color:var(--lav);}
-  .tier-badge{display:inline-flex; align-items:center; gap:8px; font-family:Georgia,serif; font-weight:bold; font-size:1.3rem; padding:8px 18px; border-radius:30px; border:2px solid;}
+  .pick{display:flex; justify-content:space-between; align-items:center; width:100%; text-align:left; background:var(--bg2); border:2px solid var(--line); color:#fff; border-radius:12px; padding:14px 16px; font-size:1.1rem; font-weight:600; margin-bottom:9px; cursor:pointer; font-family:inherit;}
+  .pick:active{transform:translateY(1px);}
+  .pick.sel{border-color:var(--accent,var(--purple)); background:rgba(141,134,255,.16); box-shadow:0 0 0 3px rgba(141,134,255,.12);}
+  .pick .cnt{font-size:.8rem; color:var(--red); font-weight:800;}
+  .picktip{font-size:.85rem; color:var(--muted); text-align:center; margin-top:4px;}
 
-  /* admin */
-  .stat{display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line);}
-  .stat:last-child{border-bottom:none;}
-  .tbl-head{display:flex; align-items:center; gap:8px; font-family:Georgia,serif; font-weight:bold; font-size:1.25rem; margin:4px 0 10px;}
-  .prow{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 11px; background:var(--bg2); border-radius:10px; margin-bottom:7px; font-size:1rem;}
-  .prow .pn{font-weight:600; color:#fff;}
-  .prow .pr{font-size:.85rem; color:var(--muted);}
-  .move{display:flex; gap:6px;}
-  .move button{width:38px; height:38px; border-radius:9px; border:1px solid var(--line); background:var(--card2); color:var(--lav); font-size:1.1rem; cursor:pointer;}
-  .move button.on-up{background:var(--teal); color:#10222; border-color:var(--teal); color:#0c2;}
-  .move button.on-up.act{background:var(--teal); color:#05201c;}
-  .move button.on-down.act{background:var(--red); color:#2a0c0c;}
-  .seg{display:inline-flex; gap:0; border:1px solid var(--line); border-radius:9px; overflow:hidden;}
-  .seg button{width:42px; height:34px; background:var(--card2); color:var(--muted); border:none; cursor:pointer; font-size:1rem;}
-  .seg button.act{color:#fff;}
-  .seg button.up.act{background:var(--teal); color:#062;}
-  .seg button.dn.act{background:var(--red); color:#fff;}
-  .seg button.stay.act{background:var(--line); color:#fff;}
+  .nightwait{text-align:center; padding:30px 16px;}
+  .nightwait .big{font-size:3.4rem; margin-bottom:8px;}
+  .nightwait .z{font-size:1.3rem; color:var(--lav); font-family:Georgia,serif;}
+  .pulse{animation:pulse 1.8s ease-in-out infinite;} @keyframes pulse{0%,100%{opacity:.45;}50%{opacity:1;}}
+
+  .resultbox{text-align:center; padding:22px 16px;}
+  .resultbox .em{font-size:3.2rem;} .resultbox .h{font-family:Georgia,serif; color:#fff; font-size:1.5rem; margin:6px 0;}
+  .seer-yes{color:var(--red);} .seer-no{color:var(--teal);}
+
+  .role-mini{display:inline-flex; align-items:center; gap:8px; background:var(--card2); border:1px solid var(--line); border-radius:30px; padding:7px 16px; font-family:Georgia,serif; font-weight:bold; color:#fff; font-size:1.05rem;}
+  .pack{font-size:.92rem; color:var(--red); text-align:center; margin-bottom:12px; font-weight:700;}
+  .deadtag{display:inline-block; background:rgba(255,93,93,.15); color:var(--red); border:1px solid var(--red); border-radius:30px; padding:6px 16px; font-weight:800; letter-spacing:.04em;}
+
+  .winbox{text-align:center; padding:26px 18px;}
+  .winbox .trophy{font-size:4rem;} .winbox .ttl{font-family:Georgia,serif; color:#fff; font-size:2rem; margin:6px 0 4px;}
+  .tier-badge{display:inline-flex; align-items:center; gap:7px; font-family:Georgia,serif; font-weight:bold; font-size:1.1rem; padding:7px 16px; border-radius:30px; border:2px solid;}
+
+  /* host monitor */
+  .mtable{margin-bottom:12px;} .mtable .mh{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;}
+  .mtable .mt{font-family:Georgia,serif; font-weight:bold; font-size:1.2rem;}
+  .mphase{font-size:.92rem; color:var(--lav);}
+  .mmeta{display:flex; justify-content:space-between; font-size:.86rem; color:var(--muted); margin-top:6px;}
+  .mmsg{font-size:.88rem; color:var(--lav); margin-top:6px; min-height:1.1em;}
+  .stat{display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--line);} .stat:last-child{border-bottom:none;}
+  .prow{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 11px; background:var(--bg2); border-radius:10px; margin-bottom:6px;}
+  .prow .pn{font-weight:600; color:#fff;} .prow .pr{font-size:.82rem; color:var(--muted);}
+  .x{background:none; border:none; color:var(--muted); font-size:1.1rem; cursor:pointer;}
+  .statusPill{padding:5px 12px; border-radius:20px; font-size:.78rem; font-weight:700; background:var(--card2); color:var(--gold);}
 
   /* modal */
-  .overlay{position:fixed; inset:0; background:rgba(8,6,18,.78); display:flex; align-items:flex-end; justify-content:center; z-index:50; padding:0;}
-  .sheet{background:var(--bg2); width:100%; max-width:560px; max-height:88vh; overflow-y:auto; border-radius:22px 22px 0 0; border:1px solid var(--line); padding:22px 20px 30px;}
-  .sheet h2{font-family:Georgia,serif; color:#fff; font-size:1.6rem; margin-bottom:4px;}
-  .sheet .close{position:sticky; top:0; float:right; background:var(--card2); border:1px solid var(--line); color:var(--lav); width:38px; height:38px; border-radius:50%; font-size:1.2rem; cursor:pointer;}
-  .role-item{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
-  .role-item:last-child{border-bottom:none;}
-  .role-item .em{font-size:2.2rem; line-height:1; width:44px; text-align:center;}
-  .role-item .rt{font-family:Georgia,serif; font-weight:bold; color:#fff; font-size:1.15rem;}
-  .role-item .rd{font-size:.92rem; color:var(--lav); line-height:1.45; margin-top:2px;}
-  .step{display:flex; gap:12px; margin-bottom:14px;}
-  .step .n{flex:none; width:30px; height:30px; border-radius:50%; background:var(--purple); color:#15122b; font-weight:bold; display:flex; align-items:center; justify-content:center; font-family:Georgia,serif;}
-  .step .t{font-size:.98rem; line-height:1.5;}
-  .step .t b{color:#fff;}
+  .overlay{position:fixed; inset:0; background:rgba(8,6,18,.8); display:flex; align-items:flex-end; justify-content:center; z-index:50;}
+  .sheet{background:var(--bg2); width:100%; max-width:560px; max-height:88vh; overflow-y:auto; border-radius:22px 22px 0 0; border:1px solid var(--line); padding:20px 18px 28px;}
+  .sheet h2{font-family:Georgia,serif; color:#fff; font-size:1.5rem; margin-bottom:4px;}
+  .sheet .close{position:sticky; top:0; float:right; background:var(--card2); border:1px solid var(--line); color:var(--lav); width:36px; height:36px; border-radius:50%; font-size:1.1rem; cursor:pointer;}
+  .role-item{display:flex; gap:13px; padding:13px 0; border-bottom:1px solid var(--line);} .role-item:last-child{border-bottom:none;}
+  .role-item .em{font-size:2rem; width:40px; text-align:center;}
+  .role-item .rt{font-family:Georgia,serif; font-weight:bold; color:#fff; font-size:1.1rem;}
+  .role-item .rd{font-size:.9rem; color:var(--lav); line-height:1.4; margin-top:2px;}
+  .step{display:flex; gap:11px; margin-bottom:12px;}
+  .step .n{flex:none; width:28px; height:28px; border-radius:50%; background:var(--purple); color:#15122b; font-weight:bold; display:flex; align-items:center; justify-content:center; font-family:Georgia,serif;}
+  .step .t{font-size:.95rem; line-height:1.5;} .step .t b{color:#fff;}
 
-  .toast{position:fixed; top:14px; left:50%; transform:translateX(-50%) translateY(-150%); background:var(--gold); color:#1a1530; font-weight:800; padding:12px 22px; border-radius:30px; z-index:80; transition:transform .35s; box-shadow:0 8px 24px rgba(0,0,0,.4); max-width:92%; text-align:center;}
+  .toast{position:fixed; top:14px; left:50%; transform:translateX(-50%) translateY(-150%); background:var(--gold); color:#1a1530; font-weight:800; padding:11px 20px; border-radius:30px; z-index:80; transition:transform .35s; box-shadow:0 8px 24px rgba(0,0,0,.4); max-width:92%; text-align:center;}
   .toast.show{transform:translateX(-50%) translateY(0);}
-  .footlink{position:fixed; bottom:14px; font-size:.8rem; color:#5f5a8f;}
-  .footlink a{color:#7d77b8; cursor:pointer;}
-  .banner{background:var(--card2); border:1px dashed var(--line); border-radius:12px; padding:12px 14px; font-size:.9rem; color:var(--gold); text-align:center; margin-bottom:14px;}
+  .footlink{position:fixed; bottom:12px; font-size:.8rem; color:#5f5a8f;} .footlink a{color:#7d77b8; cursor:pointer;}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">
 
-  <!-- ============ LOADING / CONFIG NOTICE ============ -->
   <div id="needConfig" class="hidden">
-    <span class="moon">🌙</span><h1>Werewolf Night</h1>
-    <div class="tag">Setup needed</div>
-    <div class="card center">
-      <p class="muted">This app needs its Firebase connection details filled in before it can run. (The developer adds these once.)</p>
-    </div>
+    <span class="moon">🌙</span><h1>Werewolf Night</h1><div class="tag">Setup needed</div>
+    <div class="card center"><p class="muted">This app needs its Firebase details filled in before it can run.</p></div>
   </div>
 
-  <!-- ============ JOIN ============ -->
   <div id="joinScreen" class="hidden">
-    <span class="moon">🌙</span><h1>Werewolf Night</h1>
-    <div class="tag">Scan • Join • Survive</div>
-    <div id="joinBanner" class="banner hidden"></div>
+    <span class="moon">🌙</span><h1>Werewolf Night</h1><div class="tag">Scan • Join • Survive</div>
     <div class="card">
       <label for="nameInput">Your name</label>
       <input type="text" id="nameInput" maxlength="22" placeholder="e.g. Maide" autocomplete="off">
@@ -129,76 +129,28 @@
     </div>
   </div>
 
-  <!-- ============ PLAYER: WAITING ============ -->
-  <div id="waitScreen" class="hidden">
-    <span class="moon">🌙</span><h1 id="waitHi">You're in!</h1>
-    <div class="tag" id="waitSub">Waiting for the game to start…</div>
-    <div class="card center">
-      <p class="muted" id="waitMsg">Sit tight — the host will start things soon. Keep this page open!</p>
-      <div id="waitTier" class="hidden" style="margin-top:14px;"></div>
-    </div>
-    <div class="info-btns">
-      <button onclick="openModal('roles')">🎭 Character Roles</button>
-      <button onclick="openModal('rules')">📖 How to Play</button>
-    </div>
-    <button class="btn ghost sm" id="leaveBtn" style="margin-top:8px;">Leave</button>
-  </div>
-
-  <!-- ============ PLAYER: ROLE REVEAL ============ -->
-  <div id="roleScreen" class="hidden">
-    <div class="tag center" id="roleGameNo">Game 1</div>
-    <div id="roleTierWrap" class="center" style="margin-bottom:14px;"></div>
-    <div class="card role-big" id="roleCard">
-      <div class="role-emoji" id="rEmoji">🐺</div>
-      <div class="role-name" id="rName">Werewolf</div>
-      <div class="role-team center" id="rTeamWrap"><span class="pill" id="rTeam">Wolves</span></div>
-      <div class="role-desc" id="rDesc"></div>
-    </div>
-    <p class="center muted">🤫 Keep your role secret! Don't show your screen.</p>
-    <div class="info-btns" style="margin-top:14px;">
-      <button onclick="openModal('roles')">🎭 All Roles</button>
-      <button onclick="openModal('rules')">📖 How to Play</button>
-    </div>
-  </div>
-
-  <!-- ============ ADMIN: LOGIN ============ -->
   <div id="adminLogin" class="hidden">
-    <span class="moon">🎛️</span><h1>Host Login</h1>
-    <div class="tag">Admin access</div>
+    <span class="moon">🎛️</span><h1>Host Login</h1><div class="tag">Admin access</div>
     <div class="card">
       <label for="pinInput">Host PIN</label>
       <input type="password" id="pinInput" inputmode="numeric" placeholder="••••" autocomplete="off">
       <button class="btn gold" id="pinBtn" style="margin-top:14px;">Enter</button>
     </div>
-    <button class="btn ghost sm" onclick="go('join')">← Back to join</button>
+    <button class="btn ghost sm" onclick="go('join')">← Back</button>
   </div>
 
-  <!-- ============ ADMIN: DASHBOARD ============ -->
-  <div id="adminDash" class="hidden">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-      <h1 style="font-size:1.8rem; text-align:left;">🎛️ Host</h1>
-      <span class="pill" id="statusPill" style="background:var(--card2); color:var(--gold);">Lobby</span>
-    </div>
-    <div id="adminBody"></div>
-    <div style="margin-top:18px; display:flex; gap:10px;">
-      <button class="btn ghost sm" onclick="openModal('roles')">🎭 Roles</button>
-      <button class="btn ghost sm" onclick="openModal('rules')">📖 Rules</button>
-      <button class="btn ghost sm" id="resetBtn">↺ Reset</button>
-    </div>
-  </div>
+  <div id="playerStage" class="hidden"></div>
+  <div id="adminDash" class="hidden"></div>
 
 </div>
 
 <div class="toast" id="toast"></div>
 <div class="footlink" id="footlink"></div>
 
-<!-- Firebase SDK (compat) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
-/* ======================================================================
-   CONFIG  —  fill firebase with your project's web config + a host PIN
-   ====================================================================== */
+/* ===================== CONFIG ===================== */
 const CONFIG = {
   firebase: {
     apiKey: "AIzaSyCM2qYbDUXNMnJfTrs3n6QeNW6I_KKW684",
@@ -208,316 +160,395 @@ const CONFIG = {
     appId: "1:503393016321:web:3f72843ead5b78fce1fe00"
   },
   hostPin: "2611",
-  tiers: ["Bronze","Silver","Gold"]   // index 0=lowest .. 2=top
+  durations: { wolves:40, seer:25, doctor:25, morning:10, discuss:120, vote:45, verdict:9 }, // seconds
+  gameCapMin: 30
 };
 
-/* ---------------- role definitions ---------------- */
+/* ===================== ROLES ===================== */
 const ROLES = {
-  villager:{name:"Villager", em:"🧑‍🌾", team:"Village", color:"var(--teal)",
-    desc:"No special powers — but your voice and your vote are the village's best weapon. Watch, listen, and hunt the wolves."},
-  wolf:{name:"Werewolf", em:"🐺", team:"Wolves", color:"var(--red)",
-    desc:"Each night, secretly agree with your pack on one villager to eliminate. By day, blend in and act innocent."},
-  seer:{name:"Seer", em:"👁️", team:"Village", color:"var(--teal)",
-    desc:"Each night, secretly point to one player — the narrator tells you if they are a Werewolf or not. Use it wisely!"},
-  doctor:{name:"Doctor", em:"💉", team:"Village", color:"var(--teal)",
-    desc:"Each night, choose one player to protect. If the wolves attack them, they survive. You may protect yourself."},
-  hunter:{name:"Hunter", em:"🏹", team:"Village", color:"var(--teal)",
-    desc:"If you are eliminated (by vote or wolves), you immediately take one other player down with you. Choose fast!"},
-  jester:{name:"Jester", em:"🤡", team:"Solo", color:"var(--gold)",
-    desc:"You win ALL BY YOURSELF if the village votes YOU out. Act suspicious on purpose and get yourself eliminated!"},
-  cupid:{name:"Cupid", em:"💘", team:"Village", color:"var(--purple)",
-    desc:"On the first night only, choose two players to become secret Lovers. If one of them dies, the other dies of heartbreak."},
-  witch:{name:"Witch", em:"🧪", team:"Village", color:"var(--teal)",
-    desc:"You hold two one-time potions: a heal (save the night's victim) and a poison (kill any player). One use each, all game."}
+  villager:{name:"Villager", em:"🧑‍🌾", team:"Village", color:"var(--teal)", desc:"No night powers — but your vote and your read on people are the village's weapon. Find the wolves by day."},
+  wolf:{name:"Werewolf", em:"🐺", team:"Wolves", color:"var(--red)", desc:"Each night you and your pack secretly pick one player to eat. By day, lie low and act innocent."},
+  seer:{name:"Seer", em:"👁️", team:"Village", color:"var(--teal)", desc:"Each night you inspect one player and instantly learn if they're a Werewolf. Guide the village without blowing your cover."},
+  doctor:{name:"Doctor", em:"💉", team:"Village", color:"var(--teal)", desc:"Each night you protect one player (even yourself). If the wolves attack them, they survive."},
+  jester:{name:"Jester", em:"🤡", team:"Solo", color:"var(--gold)", desc:"You win all by yourself if the village VOTES YOU OUT. Act guilty on purpose and trick them into eliminating you!"}
 };
+const AUTO_ROLES = ["wolf","seer","doctor","jester","villager"];
 
-/* ---------------- state ---------------- */
-let db=null, S=null, me={id:null,name:null}, session=null, isAdmin=false, screen="join";
+/* ===================== STATE ===================== */
+let db=null,S=null,me={id:null,name:null},session=null,isAdmin=false,screen="join";
+let lastAdvance={}, wakeLock=null;
 const $=id=>document.getElementById(id);
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove("show"),2500);}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+function esc(s){return(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function rand(n){return Math.random()*n|0;}
+function topKey(o){let best=null,bv=-1,ties=[];for(const k in o){if(o[k]>bv){bv=o[k];ties=[k];}else if(o[k]===bv)ties.push(k);}return ties.length?ties[rand(ties.length)]:null;}
+function firstVal(o){if(!o)return null;const k=Object.keys(o);return k.length?o[k[0]]:null;}
 
-function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(t._x); t._x=setTimeout(()=>t.classList.remove("show"),2600); }
-function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; }
-
-/* ---------------- screens ---------------- */
-const SCREENS=["needConfig","joinScreen","waitScreen","roleScreen","adminLogin","adminDash"];
-function show(elId){ SCREENS.forEach(s=>$(s).classList.toggle("hidden", s!==elId)); }
-function go(s){
-  screen=s;
-  if(s==="join") show("joinScreen");
-  else if(s==="wait") show("waitScreen");
-  else if(s==="role") show("roleScreen");
-  else if(s==="adminLogin") show("adminLogin");
-  else if(s==="admin") show("adminDash");
+/* ===================== SCREENS ===================== */
+const SCREENS=["needConfig","joinScreen","adminLogin","playerStage","adminDash"];
+function show(id){SCREENS.forEach(s=>$(s).classList.toggle("hidden",s!==id));}
+function go(s){screen=s;
+  if(s==="join")show("joinScreen");
+  else if(s==="adminLogin")show("adminLogin");
+  else if(s==="player")show("playerStage");
+  else if(s==="admin")show("adminDash");
 }
 
-/* ---------------- init ---------------- */
+/* ===================== INIT ===================== */
 function init(){
-  if(CONFIG.firebase.apiKey.startsWith("PASTE")){ show("needConfig"); return; }
-  firebase.initializeApp(CONFIG.firebase);
-  db=firebase.database(); S=db.ref("session");
-
-  me.id=localStorage.getItem("wn_id"); if(!me.id){ me.id="p"+Math.random().toString(36).slice(2,10); localStorage.setItem("wn_id",me.id); }
+  if(CONFIG.firebase.apiKey.startsWith("PASTE")){show("needConfig");return;}
+  firebase.initializeApp(CONFIG.firebase); db=firebase.database(); S=db.ref("session");
+  me.id=localStorage.getItem("wn_id"); if(!me.id){me.id="p"+Math.random().toString(36).slice(2,10);localStorage.setItem("wn_id",me.id);}
   me.name=localStorage.getItem("wn_name")||null;
+  S.on("value",snap=>{session=snap.val()||{status:"lobby",game:0,players:{}};render();});
+  const adminMode=location.hash.toLowerCase().includes("admin");
+  $("footlink").innerHTML=adminMode?"":'<a onclick="go(\'adminLogin\')">Host? Tap here</a>';
+  if(adminMode)go("adminLogin"); else if(me.name)go("player"); else go("join");
+  setInterval(tick,1000);
+}
+function tick(){ if(isAdmin)engineTick(); updateClocks(); }
+function updateClocks(){
+  const now=Date.now();
+  document.querySelectorAll("[data-ends]").forEach(el=>{
+    const ms=+el.getAttribute("data-ends")-now; const s=Math.max(0,Math.ceil(ms/1000));
+    el.textContent=fmt(s); el.classList.toggle("low",s<=10);
+  });
+}
+function fmt(s){const m=Math.floor(s/60),x=s%60;return m>0?m+":"+String(x).padStart(2,"0"):String(s);}
 
-  S.on("value", snap=>{ session=snap.val()||{status:"lobby",game:0,players:{}}; render(); });
-
-  const adminMode = location.hash.toLowerCase().includes("admin");
-  $("footlink").innerHTML = adminMode ? "" : '<a onclick="go(\'adminLogin\')">Host? Tap here</a>';
-  if(adminMode){ go("adminLogin"); }
-  else if(me.name){ /* already joined; render() will route */ go("wait"); }
-  else { go("join"); }
+/* ===================== RENDER ROUTER ===================== */
+function render(){
+  if(!session)return;
+  if(isAdmin){renderAdmin();return;}
+  if(screen==="adminLogin")return;
+  const p=session.players&&session.players[me.id];
+  if(!me.name||!p){if(screen!=="join")go("join");return;}
+  if(screen!=="player")go("player");
+  renderPlayer(p);
 }
 
-/* ---------------- render router ---------------- */
-function render(){
-  if(!session) return;
-  if(isAdmin){ renderAdmin(); return; }
-  // player routing
-  const p = session.players && session.players[me.id];
-  if(screen==="adminLogin") return;
-  if(!me.name || !p){ if(screen!=="join") go("join"); return; }
+/* ===================== JOIN ===================== */
+$("joinBtn").onclick=()=>{const n=$("nameInput").value.trim();if(!n){toast("Type your name");return;}
+  me.name=n;localStorage.setItem("wn_name",n);S.child("players/"+me.id).update({name:n,joinedAt:Date.now()});go("player");toast("You're in, "+n+"! 🐺");};
+$("nameInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("joinBtn").click();});
 
-  if(session.status==="playing" && p.role){
-    renderRole(p);
-    if(screen!=="role") go("role");
-  } else {
-    renderWait(p);
-    if(screen!=="wait") go("wait");
+/* ===================== PLAYER VIEW ===================== */
+function countPlayers(){return session.players?Object.keys(session.players).length:0;}
+function tierName(i){return["Bronze","Silver","Gold"][i]||"—";}
+function tierColor(i){return["var(--bronze-t)","var(--silver-t)","var(--gold-t)"][i]||"var(--muted)";}
+function tierEmoji(i){return["🥉","🥈","🥇"][i]||"";}
+function tierBadge(i){return'<span class="tier-badge" style="border-color:'+tierColor(i)+';color:'+tierColor(i)+'">'+tierEmoji(i)+' '+tierName(i)+' Table</span>';}
+function aliveAtArr(tk){const ps=session.players||{};return Object.keys(ps).filter(id=>ps[id].table===tk&&ps[id].alive);}
+
+function renderPlayer(p){
+  const el=$("playerStage"); const st=session.status;
+  if(st!=="running"||p.role==null){
+    el.innerHTML='<span class="moon">🌙</span><h1>You\'re in, '+esc(me.name)+'!</h1>'
+      +'<div class="tag">'+(st==="finished"?"Event finished":"Waiting for the host")+'</div>'
+      +'<div class="card center"><p class="muted">'+(st==="finished"?"Thanks for playing! 🐺":("The host will start soon — keep this page open!<br><br><b>"+countPlayers()+"</b> players joined."))+'</p></div>'
+      +infoBtns(); return;
+  }
+  const tk=p.table, T=session.tables&&session.tables[tk];
+  if(!T){el.innerHTML='<div class="card center"><p class="muted">Loading…</p></div>';return;}
+  if(T.phase==="ended"){renderGameOver(el,p,T);return;}
+  if(!p.alive){renderDead(el,p,T);return;}
+  renderPhase(el,p,T);
+}
+
+function infoBtns(){return'<div class="info-btns" style="margin-top:12px"><button onclick="openModal(\'roles\')">🎭 Roles</button><button onclick="openModal(\'rules\')">📖 How to Play</button></div>';}
+function clockHTML(T){return'<div class="clock"><span>⏱</span><span data-ends="'+T.phaseEndsAt+'">'+fmt(Math.max(0,Math.ceil((T.phaseEndsAt-Date.now())/1000)))+'</span></div>';}
+function isNight(ph){return ph==="wolves"||ph==="seer"||ph==="doctor";}
+
+function renderPhase(el,p,T){
+  const ph=T.phase, ps=session.players, alive=aliveAtArr(p.table);
+  const cls=isNight(ph)?"night":"day";
+  let head='<div class="phase-head '+cls+'">';
+  if(isNight(ph)) head+='<div class="phase-kicker" style="color:#8d86ff">🌙 Night '+(T.night||1)+'</div>';
+  else head+='<div class="phase-kicker" style="color:var(--gold)">☀️ Day '+(T.night||1)+'</div>';
+
+  // determine if THIS player acts this phase
+  const myActs=(ph==="wolves"&&p.role==="wolf")||(ph==="seer"&&p.role==="seer")||(ph==="doctor"&&p.role==="doctor")||(ph==="vote");
+  let body="";
+
+  if(ph==="wolves"){
+    if(p.role==="wolf"){
+      head+='<div class="phase-title">Choose your prey</div>'+clockHTML(T)+'</div>';
+      const pack=Object.keys(ps).filter(id=>ps[id].table===p.table&&ps[id].role==="wolf"&&ps[id].alive).map(id=>esc(ps[id].name));
+      body='<div class="pack">🐺 Your pack: '+pack.join(", ")+'</div>';
+      const targets=alive.filter(id=>ps[id].role!=="wolf");
+      body+=pickList(p.table,targets,T,true);
+      body+='<p class="picktip">Tap a villager. You can change until time runs out.</p>';
+    } else { head+='<div class="phase-title">Night falls…</div></div>'; body=nightWait("The wolves are on the prowl. Eyes closed."); }
+  }
+  else if(ph==="seer"){
+    if(p.role==="seer"){
+      const sr=p.seerResult;
+      if(sr&&sr.night===T.night){
+        head+='<div class="phase-title">Your vision</div>'+clockHTML(T)+'</div>';
+        body='<div class="resultbox"><div class="em">'+(sr.isWolf?"🐺":"😇")+'</div><div class="h '+(sr.isWolf?"seer-yes":"seer-no")+'">'+esc(sr.name)+(sr.isWolf?" is a Werewolf!":" is NOT a werewolf")+'</div><p class="muted">Remember it — but don\'t reveal you\'re the Seer too soon.</p></div>';
+      } else {
+        head+='<div class="phase-title">Inspect someone</div>'+clockHTML(T)+'</div>';
+        body=pickList(p.table,alive.filter(id=>id!==me.id),T,false)+'<p class="picktip">Tap a player to learn if they\'re a wolf.</p>';
+      }
+    } else { head+='<div class="phase-title">Night…</div></div>'; body=nightWait("Someone is peering into the dark. Eyes closed."); }
+  }
+  else if(ph==="doctor"){
+    if(p.role==="doctor"){
+      head+='<div class="phase-title">Protect someone</div>'+clockHTML(T)+'</div>';
+      body=pickList(p.table,alive,T,false)+'<p class="picktip">You may protect yourself. Tap to choose.</p>';
+    } else { head+='<div class="phase-title">Night…</div></div>'; body=nightWait("A healer walks among you. Eyes closed."); }
+  }
+  else if(ph==="morning"){
+    head+='<div class="phase-title">Morning breaks</div>'+clockHTML(T)+'</div>';
+    body='<div class="resultbox"><div class="em">🌅</div><div class="h">'+esc(T.msg||"")+'</div></div>';
+  }
+  else if(ph==="discuss"){
+    head+='<div class="phase-title">Discuss!</div>'+clockHTML(T)+'</div>';
+    body='<div class="card center" style="margin:0 0 12px"><p style="color:#fff;font-size:1.05rem">'+esc(T.msg||"")+'</p></div>'
+      +'<p class="picktip">Talk it out — who\'s acting like a wolf? Voting starts when the timer ends.</p>'
+      +'<div class="card" style="margin-top:12px"><div class="muted" style="margin-bottom:6px">Still alive ('+alive.length+')</div>'+alive.map(id=>'<div class="prow"><span class="pn">'+esc(ps[id].name)+'</span></div>').join("")+'</div>';
+  }
+  else if(ph==="vote"){
+    head+='<div class="phase-title">Vote to eliminate</div>'+clockHTML(T)+'</div>';
+    body=pickList(p.table,alive.filter(id=>id!==me.id),T,true)+'<p class="picktip">Tap who you think is a wolf. Majority is eliminated.</p>';
+  }
+  else if(ph==="verdict"){
+    head+='<div class="phase-title">The verdict</div>'+clockHTML(T)+'</div>';
+    body='<div class="resultbox"><div class="em">🗳️</div><div class="h">'+esc(T.msg||"")+'</div></div>';
+  }
+
+  const role=ROLES[p.role];
+  const roleMini='<div class="center" style="margin-top:14px"><span class="role-mini">'+role.em+' You are the '+role.name+'</span></div>';
+  el.innerHTML=head+body+roleMini+infoBtns();
+}
+
+function pickList(tk,targets,T,showCnt){
+  const ps=session.players; const myPick=T.act&&T.act[me.id];
+  let tally={}; if(showCnt&&T.act){Object.values(T.act).forEach(t=>{if(t)tally[t]=(tally[t]||0)+1;});}
+  return targets.map(id=>'<button class="pick '+(myPick===id?"sel":"")+'" onclick="submitAct(\''+id+'\')">'
+    +'<span>'+esc(ps[id].name)+'</span>'+(showCnt&&tally[id]?'<span class="cnt">'+tally[id]+' ●</span>':(myPick===id?'<span class="cnt" style="color:var(--purple)">✓</span>':''))+'</button>').join("");
+}
+function nightWait(t){return'<div class="nightwait"><div class="big pulse">😴</div><div class="z pulse">'+t+'</div></div>';}
+
+function submitAct(target){
+  const p=session.players[me.id]; if(!p||!p.alive)return;
+  const T=session.tables[p.table]; if(!T)return;
+  const ok={wolves:p.role==="wolf",seer:p.role==="seer",doctor:p.role==="doctor",vote:true}[T.phase];
+  if(!ok)return;
+  S.child("tables/"+p.table+"/act/"+me.id).set(target);
+  if(T.phase==="seer"&&p.role==="seer"){
+    const isWolf=session.players[target].role==="wolf";
+    S.child("players/"+me.id+"/seerResult").set({night:T.night,name:session.players[target].name,isWolf});
   }
 }
 
-/* ---------------- JOIN ---------------- */
-$("joinBtn").onclick=()=>{
-  const n=$("nameInput").value.trim();
-  if(n.length<1){ toast("Please type your name"); return; }
-  me.name=n; localStorage.setItem("wn_name",n);
-  S.child("players/"+me.id).update({ name:n, joinedAt:Date.now() });
-  go("wait"); toast("You're in, "+n+"! 🐺");
-};
-$("nameInput").addEventListener("keydown",e=>{ if(e.key==="Enter") $("joinBtn").click(); });
-
-$("leaveBtn").onclick=()=>{
-  if(!confirm("Leave the game?")) return;
-  S.child("players/"+me.id).remove();
-  me.name=null; localStorage.removeItem("wn_name"); go("join");
-};
-
-/* ---------------- WAIT ---------------- */
-function renderWait(p){
-  $("waitHi").textContent="You're in, "+(me.name||"")+"!";
-  const playing = session.status==="playing";
-  $("waitSub").textContent = playing ? "Game in progress" : "Waiting for the game to start…";
-  $("waitMsg").innerHTML = playing
-    ? "The host is setting up your role. Your secret role will appear here any moment…"
-    : "Sit tight — the host will start soon. Keep this page open! <br><br><b>"+countPlayers()+"</b> players have joined.";
-  if(p && p.tier!=null){ $("waitTier").classList.remove("hidden"); $("waitTier").innerHTML = tierBadge(p.tier); }
-  else $("waitTier").classList.add("hidden");
+function renderDead(el,p,T){
+  const alive=aliveAtArr(p.table);
+  el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:var(--red)">Eliminated</div><div class="phase-title">You\'re out 💀</div></div>'
+    +'<div class="card center"><span class="deadtag">👻 You\'re a ghost</span><p class="muted" style="margin-top:12px">Stay quiet and watch the rest unfold — no hints to the living!</p>'
+    +'<p class="muted" style="margin-top:10px">You were the <b style="color:#fff">'+ROLES[p.role].name+'</b> '+ROLES[p.role].em+'</p></div>'
+    +'<div class="card"><div class="muted" style="margin-bottom:6px">'+(isNight(T.phase)?"🌙 Night "+T.night:"☀️ Day "+T.night)+' · '+alive.length+' still alive</div>'
+    +(T.msg?'<p class="muted">'+esc(T.msg)+'</p>':'')+'</div>'+infoBtns();
 }
 
-/* ---------------- ROLE ---------------- */
-function renderRole(p){
-  const r=ROLES[p.role]||ROLES.villager;
-  $("roleGameNo").textContent="Game "+(session.game||1);
-  $("roleTierWrap").innerHTML = p.tier!=null ? tierBadge(p.tier) : "";
-  $("rEmoji").textContent=r.em; $("rName").textContent=r.name; $("rName").style.color="#fff";
-  $("rDesc").textContent=r.desc;
-  const t=$("rTeam"); t.textContent=r.team;
-  t.style.background=r.color; t.style.color="#15122b";
-  $("roleCard").style.borderColor=r.color;
+function renderGameOver(el,p,T){
+  const won=didWin(p,T.winner);
+  const others=otherTablesRunning(p.table);
+  el.innerHTML='<div class="winbox"><div class="trophy">'+(T.winner==="village"?"🎉":T.winner==="wolves"?"🐺":"🤡")+'</div>'
+    +'<div class="ttl">'+(T.winner==="village"?"Village Wins!":T.winner==="wolves"?"Wolves Win!":"Jester Wins!")+'</div>'
+    +'<div class="'+(won?"seer-no":"seer-yes")+'" style="font-weight:800;font-size:1.1rem">'+(won?"You won this round! 🙌":"You didn\'t win this one.")+'</div>'
+    +'<p class="muted" style="margin-top:10px">You were the <b style="color:#fff">'+ROLES[p.role].name+'</b> '+ROLES[p.role].em+'</p></div>'
+    +'<div class="card center"><p class="muted">'+(others?"Your table finished — waiting for the other tables to wrap up…":"Waiting for the host to start the next round…")+'</p></div>'+infoBtns();
 }
+function didWin(p,winner){ if(winner==="wolves")return p.role==="wolf"; if(winner==="jester")return p.role==="jester"; if(winner==="village")return p.role!=="wolf"&&p.role!=="jester"; return false; }
+function otherTablesRunning(myTk){ if(!session.tables)return false; return [0,1,2].some(t=>t!==myTk&&session.tables[t]&&session.tables[t].phase!=="ended"); }
 
-/* ---------------- helpers ---------------- */
-function countPlayers(){ return session.players?Object.keys(session.players).length:0; }
-function tierName(i){ return CONFIG.tiers[i]||"—"; }
-function tierColor(i){ return ["var(--bronze-t)","var(--silver-t)","var(--gold-t)"][i]||"var(--muted)"; }
-function tierEmoji(i){ return ["🥉","🥈","🥇"][i]||""; }
-function tierBadge(i){ return '<span class="tier-badge" style="border-color:'+tierColor(i)+'; color:'+tierColor(i)+'">'+tierEmoji(i)+' '+tierName(i)+' Table</span>'; }
-
-/* ======================================================================
-   ADMIN
-   ====================================================================== */
-$("pinBtn").onclick=()=>{
-  if($("pinInput").value===CONFIG.hostPin){ isAdmin=true; go("admin"); render(); }
-  else toast("Wrong PIN");
-};
-$("pinInput").addEventListener("keydown",e=>{ if(e.key==="Enter") $("pinBtn").click(); });
-$("resetBtn").onclick=()=>{ if(confirm("Reset everything (players, games)? This cannot be undone.")) S.set({status:"lobby",game:0,players:{}}); };
+/* ===================== HOST ===================== */
+$("pinBtn").onclick=()=>{if($("pinInput").value===CONFIG.hostPin){isAdmin=true;go("admin");render();}else toast("Wrong PIN");};
+$("pinInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("pinBtn").click();});
 
 function renderAdmin(){
-  if(screen!=="admin") return;
-  const st=session.status||"lobby";
-  $("statusPill").textContent = st==="lobby"?"Lobby" : st==="playing"?("Game "+(session.game||1)+" • Live") : "Results";
-  const body=$("adminBody");
-  const players = session.players||{};
-  const ids = Object.keys(players);
+  if(screen!=="admin")return;
+  const el=$("adminDash"); const st=session.status||"lobby"; const ps=session.players||{}; const ids=Object.keys(ps);
+  let h='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><h1 style="font-size:1.7rem;text-align:left">🎛️ Host</h1><span class="statusPill">'+(st==="lobby"?"Lobby":st==="finished"?"Finished":"Game "+(session.game||1))+'</span></div>';
 
   if(st==="lobby"){
-    let h='<div class="card"><div class="stat"><span class="muted">Players joined</span><b style="font-size:1.4rem;color:#fff">'+ids.length+'</b></div>';
-    h+='<div style="max-height:34vh;overflow-y:auto;margin-top:8px">';
-    if(ids.length===0) h+='<p class="muted center" style="padding:18px">No one yet. Share the QR code!</p>';
-    ids.sort((a,b)=>(players[a].joinedAt||0)-(players[b].joinedAt||0)).forEach(id=>{
-      h+='<div class="prow"><span class="pn">'+esc(players[id].name)+'</span><button class="move" style="background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer" onclick="kick(\''+id+'\')">✕</button></div>';
-    });
-    h+='</div></div>';
-    h+='<button class="btn primary" '+(ids.length<3?'disabled':'')+' onclick="startGame()">▶ Start Game 1 &nbsp;·&nbsp; random tables + roles</button>';
-    if(ids.length<3) h+='<p class="muted center" style="margin-top:8px">Need at least 3 players.</p>';
-    body.innerHTML=h;
+    h+='<div class="card"><div class="stat"><span class="muted">Players joined</span><b style="font-size:1.4rem;color:#fff">'+ids.length+'</b></div><div style="max-height:34vh;overflow-y:auto;margin-top:8px">';
+    if(!ids.length)h+='<p class="muted center" style="padding:18px">No one yet — share the QR code!</p>';
+    ids.sort((a,b)=>(ps[a].joinedAt||0)-(ps[b].joinedAt||0)).forEach(id=>h+='<div class="prow"><span class="pn">'+esc(ps[id].name)+'</span><button class="x" onclick="kick(\''+id+'\')">✕</button></div>');
+    h+='</div></div><button class="btn primary" '+(ids.length<3?"disabled":"")+' onclick="startGame()">▶ Start Game · auto night/day begins</button>';
+    if(ids.length<3)h+='<p class="muted center" style="margin-top:8px">Need at least 3 players.</p>';
+  } else if(st==="running"){
+    h+='<div class="banner">The game runs itself — players act on their phones. Keep this screen open (it drives the timers).</div>';
+    [2,1,0].forEach(tk=>h+=monitorTable(tk,ps));
+    if(allEnded()) h+='<button class="btn primary" onclick="nextRound()">🔁 Start Next Round (auto-reshuffle)</button><button class="btn red" onclick="endEvent()" style="margin-top:8px">🏁 End Event</button>';
+  } else {
+    h+='<div class="card center"><p style="color:#fff;font-size:1.1rem">🏁 Event finished!</p><p class="muted" style="margin-top:8px">Thanks for hosting. Reset to run another event.</p></div>';
   }
-  else if(st==="playing"){
-    body.innerHTML = renderTables(players, false) +
-      '<button class="btn gold" style="margin-top:8px" onclick="endGame()">⏹ End Game → mark results</button>';
-  }
-  else if(st==="results"){
-    body.innerHTML =
-      '<div class="banner">Tap ⬆️ for players who move UP a table (winners / MVPs) and ⬇️ for those who move DOWN (out first / lost). Leave the rest as ➖.</div>'
-      + renderTables(players, true)
-      + '<button class="btn primary" style="margin-top:8px" onclick="nextGame()">🔁 Shuffle & Start Game '+((session.game||1)+1)+'</button>';
-  }
+  h+='<div style="margin-top:16px;display:flex;gap:10px"><button class="btn ghost sm" onclick="openModal(\'roles\')">🎭 Roles</button><button class="btn ghost sm" onclick="openModal(\'rules\')">📖 Rules</button><button class="btn ghost sm" onclick="resetAll()">↺ Reset</button></div>';
+  el.innerHTML=h;
 }
-
-function renderTables(players, withResults){
-  const ids=Object.keys(players);
-  let h="";
-  for(let t=2;t>=0;t--){
-    const group=ids.filter(id=>players[id].tier===t).sort((a,b)=>(players[a].name||"").localeCompare(players[b].name||""));
-    h+='<div class="card"><div class="tbl-head" style="color:'+tierColor(t)+'">'+tierEmoji(t)+' '+tierName(t)+' Table <span class="muted" style="font-size:.8rem;font-weight:normal">('+group.length+')</span></div>';
-    if(group.length===0) h+='<p class="muted">—</p>';
-    group.forEach(id=>{
-      const p=players[id]; const r=ROLES[p.role];
-      h+='<div class="prow"><div><span class="pn">'+esc(p.name)+'</span>'
-        + (r?'<span class="pr"> · '+r.em+' '+r.name+'</span>':'')+'</div>';
-      if(withResults){
-        const res=p.result||"stay";
-        h+='<span class="seg">'
-          +'<button class="up '+(res==="up"?"act":"")+'" onclick="setRes(\''+id+'\',\'up\')">⬆️</button>'
-          +'<button class="stay '+(res==="stay"?"act":"")+'" onclick="setRes(\''+id+'\',\'stay\')">➖</button>'
-          +'<button class="dn '+(res==="down"?"act":"")+'" onclick="setRes(\''+id+'\',\'down\')">⬇️</button>'
-          +'</span>';
-      }
-      h+='</div>';
-    });
-    h+='</div>';
-  }
-  return h;
+function monitorTable(tk,ps){
+  const T=session.tables&&session.tables[tk]; if(!T)return"";
+  const tp=Object.keys(ps).filter(id=>ps[id].table===tk); const alive=tp.filter(id=>ps[id].alive);
+  const ended=T.phase==="ended";
+  let h='<div class="card mtable"><div class="mh"><span class="mt" style="color:'+tierColor(tk)+'">'+tierEmoji(tk)+' '+tierName(tk)+'</span>'
+    +(ended?'<span class="pill" style="background:var(--card2);color:'+tierColor(tk)+'">Done</span>':'<span class="clock" style="font-size:1rem;padding:4px 12px"><span data-ends="'+T.phaseEndsAt+'">'+fmt(Math.max(0,Math.ceil((T.phaseEndsAt-Date.now())/1000)))+'</span></span>')+'</div>';
+  h+='<div class="mphase">'+phaseLabel(T.phase)+'</div>';
+  h+='<div class="mmsg">'+esc(ended?(T.endMsg||""):(T.msg||""))+'</div>';
+  h+='<div class="mmeta"><span>'+alive.length+' / '+tp.length+' alive</span><span>'+(ended?"":"Night "+(T.night||1))+'</span></div>';
+  return h+'</div>';
 }
+function phaseLabel(ph){return{wolves:"🐺 Wolves choosing a victim",seer:"👁️ Seer inspecting",doctor:"💉 Doctor protecting",morning:"🌅 Morning reveal",discuss:"🗣️ Discussion",vote:"🗳️ Voting",verdict:"⚖️ Verdict",ended:"✅ Game over"}[ph]||ph;}
 
-function kick(id){ if(confirm("Remove this player?")) S.child("players/"+id).remove(); }
-function setRes(id,v){ S.child("players/"+id+"/result").set(v); }
+function kick(id){if(confirm("Remove this player?"))S.child("players/"+id).remove();}
+function resetAll(){if(confirm("Reset everything (players + games)?"))S.set({status:"lobby",game:0,players:{}});}
+function endEvent(){if(confirm("End the whole event?"))S.child("status").set("finished");}
 
-/* assign tables (balanced) + roles, write everything */
+/* ===================== ROLE/TABLE ASSIGNMENT ===================== */
+function rolesFor(n){const r=[];const w=Math.max(1,Math.round(n/4));for(let i=0;i<w;i++)r.push("wolf");r.push("seer");if(n>=5)r.push("doctor");if(n>=7)r.push("jester");while(r.length<n)r.push("villager");if(r.length>n)r.length=n;return r;}
+function balancedCounts(n){const b=Math.floor(n/3),e=n%3,c=[b,b,b];for(let i=0;i<e;i++)c[2-i]++;return c;}
+function balancedTiers(n){const c=balancedCounts(n),arr=[];c.forEach((x,t)=>{for(let i=0;i<x;i++)arr.push(t);});return shuffle(arr);}
+function freshTable(now){return{phase:"wolves",night:1,phaseEndsAt:now+CONFIG.durations.wolves*1000,gameEndsAt:now+CONFIG.gameCapMin*60000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
+
 function startGame(){
-  const players=session.players||{};
-  const ids=shuffle(Object.keys(players));
-  const tiers=balancedTiers(ids.length);            // array of tier index per slot
-  const updates={};
-  // group ids into tiers
-  let k=0; const byTier=[[],[],[]];
-  ids.forEach(id=>{ const t=tiers[k++]; byTier[t].push(id); });
-  byTier.forEach((g,t)=>{
-    const roles=shuffle(rolesFor(g.length));
-    g.forEach((id,i)=>{ updates["players/"+id+"/tier"]=t; updates["players/"+id+"/role"]=roles[i]; updates["players/"+id+"/result"]=null; });
-  });
-  updates["status"]="playing"; updates["game"]=1;
-  S.update(updates); toast("Game 1 started! Roles sent 🐺");
+  const ps=session.players||{}; const ids=shuffle(Object.keys(ps)); const tiers=balancedTiers(ids.length);
+  const up={}; const byTier=[[],[],[]]; ids.forEach((id,i)=>byTier[tiers[i]].push(id));
+  byTier.forEach((g,t)=>{const roles=shuffle(rolesFor(g.length));g.forEach((id,i)=>{up["players/"+id+"/table"]=t;up["players/"+id+"/role"]=roles[i];up["players/"+id+"/alive"]=true;up["players/"+id+"/outOrder"]=null;up["players/"+id+"/seerResult"]=null;});});
+  const now=Date.now(); [0,1,2].forEach(t=>up["tables/"+t]=freshTable(now));
+  up["status"]="running"; up["game"]=1; S.update(up); requestWake(); toast("Game 1 started 🐺");
 }
 
-function endGame(){ S.child("status").set("results"); }
-
-function nextGame(){
-  const players=session.players||{};
-  const ids=Object.keys(players);
-  // 1) apply up/down to tier
-  const desired={};
-  ids.forEach(id=>{
-    let t=players[id].tier||0; const r=players[id].result;
-    if(r==="up") t=Math.min(2,t+1); else if(r==="down") t=Math.max(0,t-1);
-    desired[id]=t;
+function nextRound(){
+  if(!allEnded())return; const ps=session.players||{}; const ids=Object.keys(ps); const desired={};
+  ids.forEach(id=>desired[id]=ps[id].table||0);
+  [0,1,2].forEach(tk=>{
+    const T=session.tables[tk],winner=T.winner; const tp=ids.filter(id=>ps[id].table===tk);
+    const winners=tp.filter(id=>winner==="wolves"?ps[id].role==="wolf":winner==="jester"?ps[id].role==="jester":(ps[id].role!=="wolf"&&ps[id].role!=="jester"));
+    const upC=winners.filter(id=>ps[id].alive).slice(0,2);
+    const outs=tp.filter(id=>ps[id].outOrder!=null&&!upC.includes(id)).sort((a,b)=>ps[a].outOrder-ps[b].outOrder).slice(0,2);
+    upC.forEach(id=>desired[id]=Math.min(2,(ps[id].table||0)+1));
+    outs.forEach(id=>desired[id]=Math.max(0,(ps[id].table||0)-1));
   });
-  // 2) rebalance so tiers are as even as possible
-  rebalance(ids, desired);
-  // 3) assign fresh roles per tier
-  const updates={}; const byTier=[[],[],[]];
-  ids.forEach(id=>byTier[desired[id]].push(id));
-  byTier.forEach((g,t)=>{
-    const roles=shuffle(rolesFor(g.length));
-    g.forEach((id,i)=>{ updates["players/"+id+"/tier"]=t; updates["players/"+id+"/role"]=roles[i]; updates["players/"+id+"/result"]=null; });
+  rebalance(ids,desired);
+  const up={}; const byTier=[[],[],[]]; ids.forEach(id=>byTier[desired[id]].push(id));
+  byTier.forEach((g,t)=>{const roles=shuffle(rolesFor(g.length));g.forEach((id,i)=>{up["players/"+id+"/table"]=t;up["players/"+id+"/role"]=roles[i];up["players/"+id+"/alive"]=true;up["players/"+id+"/outOrder"]=null;up["players/"+id+"/seerResult"]=null;});});
+  const now=Date.now(); [0,1,2].forEach(t=>up["tables/"+t]=freshTable(now));
+  up["game"]=(session.game||1)+1; S.update(up); requestWake(); toast("Round "+up["game"]+" — reshuffled!");
+}
+function rebalance(ids,desired){const target=balancedCounts(ids.length);let g=0;while(g++<300){const c=[0,0,0];ids.forEach(id=>c[desired[id]]++);let over=-1,under=-1;for(let t=0;t<3;t++)if(c[t]>target[t])over=t;for(let t=0;t<3;t++)if(c[t]<target[t])under=t;if(over<0||under<0)break;const step=under>over?1:-1;const m=ids.filter(id=>desired[id]===over);if(!m.length)break;desired[m[rand(m.length)]]=over+step;}}
+function allEnded(){return session.tables&&[0,1,2].every(t=>session.tables[t]&&session.tables[t].phase==="ended");}
+
+/* ===================== ENGINE (host only) ===================== */
+function engineTick(){
+  if(!session||session.status!=="running"||!session.tables)return;
+  const now=Date.now(),ps=session.players||{};
+  ["0","1","2"].forEach(tk=>{
+    const T=session.tables[tk]; if(!T||T.phase==="ended")return;
+    if(now-(lastAdvance[tk]||0)<1400)return;             // debounce while update propagates
+    if(now>=T.gameEndsAt){const up={};endTable(up,tk,"wolves","⏰ Time's up! The Wolves win by default.");commit(tk,up);return;}
+    const needed=requiredActors(tk); const acted=T.act?Object.keys(T.act).filter(id=>ps[id]&&ps[id].alive&&ps[id].table===+tk):[];
+    const allActed=needed.length>0&&needed.every(p=>acted.includes(p));
+    if(now>=T.phaseEndsAt||allActed){lastAdvance[tk]=now;advanceTable(tk);}
   });
-  updates["status"]="playing"; updates["game"]=(session.game||1)+1;
-  S.update(updates); toast("Game "+updates["game"]+" — players reshuffled!");
 }
-
-function balancedTiers(n){
-  // distribute n across 3 tiers as evenly as possible: tier indices array length n
-  const base=Math.floor(n/3), extra=n%3; // give extras to top tiers
-  const counts=[base,base,base];
-  for(let i=0;i<extra;i++) counts[2-i]++;   // extra to Gold, then Silver
-  const arr=[]; counts.forEach((c,t)=>{ for(let i=0;i<c;i++) arr.push(t); });
-  return shuffle(arr);
+function commit(tk,up){lastAdvance[tk]=Date.now();S.update(up);}
+function requiredActors(tk){
+  const T=session.tables[tk],ps=session.players||{}; const al=Object.keys(ps).filter(id=>ps[id].table===+tk&&ps[id].alive);
+  if(T.phase==="wolves")return al.filter(id=>ps[id].role==="wolf");
+  if(T.phase==="seer")return al.filter(id=>ps[id].role==="seer");
+  if(T.phase==="doctor")return al.filter(id=>ps[id].role==="doctor");
+  if(T.phase==="vote")return al;
+  return [];
 }
+function aliveIds(tk){const ps=session.players||{};return Object.keys(ps).filter(id=>ps[id].table===+tk&&ps[id].alive);}
+function roleAlive(tk,role){const ps=session.players;return aliveIds(tk).some(id=>ps[id].role===role);}
+function nextOut(tk){const ps=session.players;let mx=0;Object.keys(ps).forEach(id=>{if(ps[id].table===+tk&&ps[id].outOrder>mx)mx=ps[id].outOrder;});return mx+1;}
 
-function rebalance(ids, desired){
-  const target=balancedCounts(ids.length);
-  // move players from over-full tiers to under-full, preferring nearest tier
-  let guard=0;
-  while(guard++<200){
-    const counts=[0,0,0]; ids.forEach(id=>counts[desired[id]]++);
-    let over=-1, under=-1;
-    for(let t=0;t<3;t++){ if(counts[t]>target[t]) over=t; }
-    for(let t=0;t<3;t++){ if(counts[t]<target[t]) under=t; }
-    if(over<0||under<0) break;
-    // pick a player in 'over' to move toward 'under' by one step
-    const step = under>over?1:-1;
-    const movers=ids.filter(id=>desired[id]===over);
-    if(!movers.length) break;
-    desired[movers[Math.random()*movers.length|0]] = over+step;
+function advanceTable(tk){
+  const T=session.tables[tk],ps=session.players,now=Date.now(),up={},D=CONFIG.durations;
+  const setPh=(name,secs)=>{up["tables/"+tk+"/phase"]=name;up["tables/"+tk+"/phaseEndsAt"]=now+secs*1000;up["tables/"+tk+"/act"]=null;};
+  const ph=T.phase;
+  if(ph==="wolves"){
+    const votes=T.act||{},tally={};
+    Object.entries(votes).forEach(([w,t])=>{if(t&&ps[w]&&ps[w].alive&&ps[w].role==="wolf"&&ps[w].table===+tk)tally[t]=(tally[t]||0)+1;});
+    let victim=topKey(tally);
+    if(!victim){const tg=aliveIds(tk).filter(id=>ps[id].role!=="wolf");victim=tg.length?tg[rand(tg.length)]:null;}
+    up["tables/"+tk+"/pendingVictim"]=victim||null;
+    if(roleAlive(tk,"seer"))setPh("seer",D.seer);
+    else if(roleAlive(tk,"doctor"))setPh("doctor",D.doctor);
+    else resolveNight(tk,up,now,null,victim);
+  } else if(ph==="seer"){
+    if(roleAlive(tk,"doctor"))setPh("doctor",D.doctor); else resolveNight(tk,up,now,null);
+  } else if(ph==="doctor"){
+    resolveNight(tk,up,now,firstVal(T.act));
+  } else if(ph==="morning"){
+    setPh("discuss",D.discuss);
+  } else if(ph==="discuss"){
+    setPh("vote",D.vote);
+  } else if(ph==="vote"){
+    resolveDay(tk,up,now);
+  } else if(ph==="verdict"){
+    up["tables/"+tk+"/night"]=(T.night||1)+1; setPh("wolves",D.wolves);
   }
+  S.update(up);
 }
-function balancedCounts(n){ const b=Math.floor(n/3),e=n%3,c=[b,b,b]; for(let i=0;i<e;i++)c[2-i]++; return c; }
-
-/* role list for a table of size n */
-function rolesFor(n){
-  const roles=[];
-  const wolves=Math.max(1,Math.round(n/4));
-  for(let i=0;i<wolves;i++) roles.push("wolf");
-  roles.push("seer");
-  if(n>=5) roles.push("doctor");
-  if(n>=8) roles.push("hunter");
-  if(n>=10) roles.push("jester");
-  if(n>=11) roles.push("cupid");
-  if(n>=13) roles.push("witch");
-  while(roles.length<n) roles.push("villager");
-  if(roles.length>n) roles.length=n;     // trim extras for tiny tables (wolves+seer kept first)
-  return roles;
+function resolveNight(tk,up,now,protect,victimArg){
+  const T=session.tables[tk],ps=session.players,D=CONFIG.durations;
+  const victim=(victimArg!==undefined)?victimArg:T.pendingVictim; const aliveClone={}; aliveIds(tk).forEach(id=>aliveClone[id]=true);
+  let died=null;
+  if(victim&&victim!==protect){died=victim;up["players/"+victim+"/alive"]=false;up["players/"+victim+"/outOrder"]=nextOut(tk);delete aliveClone[victim];}
+  up["tables/"+tk+"/pendingVictim"]=null; up["tables/"+tk+"/act"]=null;
+  up["tables/"+tk+"/msg"]=died?(ps[died].name+" was eaten overnight — they were a "+ROLES[ps[died].role].name+" "+ROLES[ps[died].role].em+"."):"A peaceful night — everyone survived.";
+  const w=winState(aliveClone,ps);
+  if(w){endTable(up,tk,w);} else {up["tables/"+tk+"/phase"]="morning";up["tables/"+tk+"/phaseEndsAt"]=now+D.morning*1000;}
+}
+function resolveDay(tk,up,now){
+  const T=session.tables[tk],ps=session.players,D=CONFIG.durations;
+  const votes=T.act||{},tally={};
+  Object.entries(votes).forEach(([v,t])=>{if(t&&ps[v]&&ps[v].alive&&ps[v].table===+tk)tally[t]=(tally[t]||0)+1;});
+  const out=topKey(tally); const aliveClone={}; aliveIds(tk).forEach(id=>aliveClone[id]=true);
+  up["tables/"+tk+"/act"]=null;
+  if(out){
+    up["players/"+out+"/alive"]=false; up["players/"+out+"/outOrder"]=nextOut(tk); delete aliveClone[out];
+    const role=ps[out].role;
+    up["tables/"+tk+"/msg"]="The village voted out "+ps[out].name+" — they were a "+ROLES[role].name+" "+ROLES[role].em+".";
+    if(role==="jester"){endTable(up,tk,"jester");return;}
+  } else { up["tables/"+tk+"/msg"]="No majority — nobody was eliminated."; }
+  const w=winState(aliveClone,ps);
+  if(w){endTable(up,tk,w);} else {up["tables/"+tk+"/phase"]="verdict";up["tables/"+tk+"/phaseEndsAt"]=now+D.verdict*1000;}
+}
+function winState(aliveClone,ps){let wolves=0,others=0;Object.keys(aliveClone).forEach(id=>{if(ps[id].role==="wolf")wolves++;else others++;});if(wolves===0)return"village";if(wolves>=others)return"wolves";return null;}
+function endTable(up,tk,winner,customMsg){
+  up["tables/"+tk+"/phase"]="ended"; up["tables/"+tk+"/winner"]=winner; up["tables/"+tk+"/phaseEndsAt"]=Date.now(); up["tables/"+tk+"/act"]=null; up["tables/"+tk+"/pendingVictim"]=null;
+  up["tables/"+tk+"/endMsg"]=customMsg||(winner==="village"?"🎉 The Village wins — all wolves are gone!":winner==="wolves"?"🐺 The Wolves win!":"🤡 The Jester wins — voted out on purpose!");
 }
 
-function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+/* ===================== WAKE LOCK ===================== */
+async function requestWake(){try{if("wakeLock"in navigator){wakeLock=await navigator.wakeLock.request("screen");}}catch(e){}}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&isAdmin&&session&&session.status==="running")requestWake();});
 
-/* ======================================================================
-   MODALS  (roles / rules)
-   ====================================================================== */
+/* ===================== MODALS ===================== */
 function openModal(which){
-  const o=document.createElement("div"); o.className="overlay"; o.onclick=e=>{ if(e.target===o) o.remove(); };
+  const o=document.createElement("div");o.className="overlay";o.onclick=e=>{if(e.target===o)o.remove();};
   let inner='<div class="sheet"><button class="close" onclick="this.closest(\'.overlay\').remove()">✕</button>';
   if(which==="roles"){
-    inner+='<h2>🎭 Character Roles</h2><p class="muted" style="margin-bottom:10px">Not every role is in every game — the bigger the table, the more roles appear.</p>';
-    Object.values(ROLES).forEach(r=>{
-      inner+='<div class="role-item"><div class="em">'+r.em+'</div><div><div class="rt">'+r.name+' <span class="pill" style="background:'+r.color+';color:#15122b;font-size:.65rem;vertical-align:middle">'+r.team+'</span></div><div class="rd">'+r.desc+'</div></div></div>';
-    });
+    inner+='<h2>🎭 Character Roles</h2><p class="muted" style="margin-bottom:10px">Bigger tables unlock more roles. The app tells you exactly what to do on your turn.</p>';
+    AUTO_ROLES.forEach(k=>{const r=ROLES[k];inner+='<div class="role-item"><div class="em">'+r.em+'</div><div><div class="rt">'+r.name+' <span class="pill" style="background:'+r.color+';color:#15122b;font-size:.65rem">'+r.team+'</span></div><div class="rd">'+r.desc+'</div></div></div>';});
   } else {
-    inner+='<h2>📖 How to Play</h2>'
-      +'<p class="muted" style="margin-bottom:14px">Werewolf is a game of hidden roles. The village is trying to find the wolves; the wolves are trying to eat the village. Each table has its own narrator.</p>'
-      +step(1,"<b>Get your secret role</b> on your phone when the host starts the game. Don't show anyone!")
-      +step(2,"<b>Night falls.</b> Everyone closes their eyes. The narrator quietly wakes the Werewolves (who pick a victim), then the Seer, Doctor, and other night roles one by one.")
-      +step(3,"<b>Day breaks.</b> The narrator announces who was eliminated overnight. Now everyone debates: who's acting suspicious?")
-      +step(4,"<b>Vote.</b> The table votes one player out. That player reveals nothing — they're just out. Then night falls again.")
-      +step(5,"<b>Win.</b> Village wins when all wolves are gone. Wolves win when they equal the villagers. The Jester wins if the village votes them out!")
-      +'<h2 style="font-size:1.3rem;margin-top:18px">🏆 The Table Ladder</h2>'
-      +'<p class="muted" style="margin-top:6px">There are three tables — '+tierEmoji(2)+' Gold, '+tierEmoji(1)+' Silver, '+tierEmoji(0)+' Bronze. After each game the host moves the standout players <b>up</b> a table and the first-out players <b>down</b>. Climb your way to the Gold table to win the night!</p>';
+    inner+='<h2>📖 How to Play</h2><p class="muted" style="margin-bottom:14px">The app is your narrator — it runs every phase and timer. Just follow your phone, and <b style="color:#fff">never show your screen to anyone</b>.</p>'
+      +step(1,"<b>Get your secret role</b> when the host starts. Memorize it — don't show it!")
+      +step(2,"<b>Night 🌙</b> — the app wakes each role in turn. If it's your turn (Wolf / Seer / Doctor) you'll tap your choice. Everyone else: eyes closed, just wait.")
+      +step(3,"<b>Morning ☀️</b> — the app reveals who the wolves ate.")
+      +step(4,"<b>Discuss</b> — talk it out at your table: who seems like a wolf?")
+      +step(5,"<b>Vote 🗳️</b> — everyone taps who to eliminate. The app counts the votes and removes the loser.")
+      +step(6,"<b>Win</b> — Village wins when all wolves are gone. Wolves win when they match the villagers. The 🤡 Jester wins if YOU vote them out! If 30 min runs out, the wolves win.")
+      +'<h2 style="font-size:1.25rem;margin-top:16px">🏆 The Table Ladder</h2><p class="muted" style="margin-top:6px">Three tables — 🥇 Gold, 🥈 Silver, 🥉 Bronze. After each round, winners who survived move <b>up</b>, first-out players move <b>down</b> — all automatic. Climb to the Gold table to rule the night!</p>';
   }
-  inner+='</div>';
-  o.innerHTML=inner; document.body.appendChild(o);
+  o.innerHTML=inner+'</div>';document.body.appendChild(o);
 }
-function step(n,t){ return '<div class="step"><div class="n">'+n+'</div><div class="t">'+t+'</div></div>'; }
+function step(n,t){return'<div class="step"><div class="n">'+n+'</div><div class="t">'+t+'</div></div>';}
 
 init();
 </script>
