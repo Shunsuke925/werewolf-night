@@ -163,7 +163,7 @@ const CONFIG = {
     appId: "1:503393016321:web:3f72843ead5b78fce1fe00"
   },
   hostPin: "2611",
-  durations: { wolves:40, seer:25, doctor:25, morning:10, discuss:120, vote:45, verdict:9 }, // seconds
+  durations: { roles:20, wolves:40, seer:25, doctor:25, morning:10, discuss:120, vote:45, verdict:9 }, // seconds
   gameCapMin: 30
 };
 
@@ -265,6 +265,20 @@ function isNight(ph){return ph==="wolves"||ph==="seer"||ph==="doctor";}
 
 function renderPhase(el,p,T){
   const ph=T.phase, ps=session.players, alive=aliveAtArr(p.table);
+  if(ph==="roles"){
+    const role=ROLES[p.role];
+    el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:var(--purple)">🎭 Game '+(session.game||1)+' — Your Secret Role</div></div>'
+      +'<div class="card" style="border:2px solid '+role.color+';text-align:center;padding:26px 18px">'
+        +'<div style="font-size:4.4rem;line-height:1">'+role.em+'</div>'
+        +'<div style="font-family:Georgia,serif;color:#fff;font-size:2rem;font-weight:bold;margin:6px 0 8px">'+role.name+'</div>'
+        +'<div style="margin-bottom:14px"><span class="pill" style="background:'+role.color+';color:#15122b">'+role.team+'</span></div>'
+        +'<div style="font-size:1.05rem;line-height:1.55;color:var(--lav)">'+role.desc+'</div>'
+      +'</div>'
+      +'<div class="center">'+clockHTML(T)+'</div>'
+      +'<p class="picktip" style="margin-top:10px">🤫 Memorize it — night falls when the timer ends. Never show your screen!</p>'
+      +infoBtns();
+    return;
+  }
   const cls=isNight(ph)?"night":"day";
   let head='<div class="phase-head '+cls+'">';
   if(isNight(ph)) head+='<div class="phase-kicker" style="color:#8d86ff">🌙 Night '+(T.night||1)+'</div>';
@@ -403,7 +417,7 @@ function monitorTable(tk,ps){
   h+='<div class="mmeta"><span>'+alive.length+' / '+tp.length+' alive</span><span>'+(ended?"":"Night "+(T.night||1))+'</span></div>';
   return h+'</div>';
 }
-function phaseLabel(ph){return{wolves:"🐺 Wolves choosing a victim",seer:"👁️ Seer inspecting",doctor:"💉 Doctor protecting",morning:"🌅 Morning reveal",discuss:"🗣️ Discussion",vote:"🗳️ Voting",verdict:"⚖️ Verdict",ended:"✅ Game over"}[ph]||ph;}
+function phaseLabel(ph){return{roles:"🎭 Role reveal",wolves:"🐺 Wolves choosing a victim",seer:"👁️ Seer inspecting",doctor:"💉 Doctor protecting",morning:"🌅 Morning reveal",discuss:"🗣️ Discussion",vote:"🗳️ Voting",verdict:"⚖️ Verdict",ended:"✅ Game over"}[ph]||ph;}
 
 function kick(id){if(confirm("Remove this player?"))S.child("players/"+id).remove();}
 function resetAll(){if(confirm("Reset everything (players + games)?"))S.set({status:"lobby",game:0,players:{}});}
@@ -413,7 +427,7 @@ function endEvent(){if(confirm("End the whole event?"))S.child("status").set("fi
 function rolesFor(n){const r=[];const w=Math.max(1,Math.round(n/4));for(let i=0;i<w;i++)r.push("wolf");r.push("seer");if(n>=5)r.push("doctor");if(n>=7)r.push("jester");while(r.length<n)r.push("villager");if(r.length>n)r.length=n;return r;}
 function balancedCounts(n){const b=Math.floor(n/3),e=n%3,c=[b,b,b];for(let i=0;i<e;i++)c[2-i]++;return c;}
 function balancedTiers(n){const c=balancedCounts(n),arr=[];c.forEach((x,t)=>{for(let i=0;i<x;i++)arr.push(t);});return shuffle(arr);}
-function freshTable(now){return{phase:"wolves",night:1,phaseEndsAt:now+CONFIG.durations.wolves*1000,gameEndsAt:now+CONFIG.gameCapMin*60000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
+function freshTable(now){return{phase:"roles",night:1,phaseEndsAt:now+CONFIG.durations.roles*1000,gameEndsAt:now+CONFIG.gameCapMin*60000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
 
 function startGame(){
   const ps=session.players||{}; const ids=shuffle(Object.keys(ps)); const tiers=balancedTiers(ids.length);
@@ -473,7 +487,9 @@ function advanceTable(tk){
   const T=session.tables[tk],ps=session.players,now=Date.now(),up={},D=CONFIG.durations;
   const setPh=(name,secs)=>{up["tables/"+tk+"/phase"]=name;up["tables/"+tk+"/phaseEndsAt"]=now+secs*1000;up["tables/"+tk+"/act"]=null;};
   const ph=T.phase;
-  if(ph==="wolves"){
+  if(ph==="roles"){
+    setPh("wolves",D.wolves);
+  } else if(ph==="wolves"){
     const votes=T.act||{},tally={};
     Object.entries(votes).forEach(([w,t])=>{if(t&&ps[w]&&ps[w].alive&&ps[w].role==="wolf"&&ps[w].table===+tk)tally[t]=(tally[t]||0)+1;});
     let victim=topKey(tally);
