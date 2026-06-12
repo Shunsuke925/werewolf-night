@@ -163,7 +163,7 @@ const CONFIG = {
     appId: "1:503393016321:web:3f72843ead5b78fce1fe00"
   },
   hostPin: "2611",
-  durations: { roles:20, wolves:40, seer:25, doctor:25, morning:10, discuss:120, vote:45, verdict:9 }, // seconds
+  durations: { tables:30, roles:15, wolves:20, seer:12, doctor:12, morning:6, discuss:60, vote:22, verdict:5 }, // seconds
   gameCapMin: 30
 };
 
@@ -259,12 +259,27 @@ function renderPlayer(p){
   renderPhase(el,p,T);
 }
 
-function infoBtns(){return'<div class="info-btns" style="margin-top:12px"><button onclick="openModal(\'roles\')">🎭 Roles</button><button onclick="openModal(\'rules\')">📖 How to Play</button></div>';}
+function infoBtns(){return'<div class="info-btns" style="margin-top:12px"><button onclick="openModal(\'roles\')">🎭 Roles</button><button onclick="openModal(\'rules\')">📖 How to Play</button></div>'
+  +'<p style="text-align:center;font-size:.82rem;color:var(--muted);margin-top:14px;line-height:1.5;border-top:1px solid var(--line);padding-top:12px">🤫 <b style="color:var(--lav)">Keep it calm.</b> No shouting or talking over each other — listen to your table\'s narrator, and never show your screen.</p>';}
 function clockHTML(T){return'<div class="clock"><span>⏱</span><span data-ends="'+T.phaseEndsAt+'">'+fmt(Math.max(0,Math.ceil((T.phaseEndsAt-Date.now())/1000)))+'</span></div>';}
 function isNight(ph){return ph==="wolves"||ph==="seer"||ph==="doctor";}
 
 function renderPhase(el,p,T){
   const ph=T.phase, ps=session.players, alive=aliveAtArr(p.table);
+  if(ph==="tables"){
+    const mates=aliveAtArr(p.table).map(id=>ps[id].name);
+    el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:'+tierColor(p.table)+'">🚶 Find your table</div></div>'
+      +'<div class="card" style="text-align:center;border:2px solid '+tierColor(p.table)+';padding:24px 18px">'
+        +'<div style="font-size:3.6rem;line-height:1">'+tierEmoji(p.table)+'</div>'
+        +'<div style="font-family:Georgia,serif;color:#fff;font-size:1.9rem;font-weight:bold;margin:4px 0 12px">'+tierName(p.table)+' Table</div>'
+        +'<p class="muted">Walk to the <b style="color:#fff">'+tierName(p.table)+'</b> area and sit with your group:</p>'
+        +'<div style="margin-top:10px;line-height:2">'+mates.map(n=>'<span class="pill" style="background:var(--card2);color:#fff;margin:3px;display:inline-block">'+esc(n)+'</span>').join(' ')+'</div>'
+      +'</div>'
+      +'<div class="center">'+clockHTML(T)+'</div>'
+      +'<p class="picktip" style="margin-top:10px">Your secret role appears once everyone is seated.</p>'
+      +infoBtns();
+    return;
+  }
   if(ph==="roles"){
     const role=ROLES[p.role];
     el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:var(--purple)">🎭 Game '+(session.game||1)+' — Your Secret Role</div></div>'
@@ -296,7 +311,7 @@ function renderPhase(el,p,T){
       const targets=alive.filter(id=>ps[id].role!=="wolf");
       body+=pickList(p.table,targets,T,true);
       body+='<p class="picktip">Tap a villager. You can change until time runs out.</p>';
-    } else { head+='<div class="phase-title">Night falls…</div></div>'; body=nightWait("The wolves are on the prowl. Eyes closed."); }
+    } else { head+='<div class="phase-title">Night falls…</div>'+clockHTML(T)+'</div>'; body=nightWait("The wolves are on the prowl. Eyes closed."); }
   }
   else if(ph==="seer"){
     if(p.role==="seer"){
@@ -308,13 +323,13 @@ function renderPhase(el,p,T){
         head+='<div class="phase-title">Inspect someone</div>'+clockHTML(T)+'</div>';
         body=pickList(p.table,alive.filter(id=>id!==me.id),T,false)+'<p class="picktip">Tap a player to learn if they\'re a wolf.</p>';
       }
-    } else { head+='<div class="phase-title">Night…</div></div>'; body=nightWait("Someone is peering into the dark. Eyes closed."); }
+    } else { head+='<div class="phase-title">Night…</div>'+clockHTML(T)+'</div>'; body=nightWait("Someone is peering into the dark. Eyes closed."); }
   }
   else if(ph==="doctor"){
     if(p.role==="doctor"){
       head+='<div class="phase-title">Protect someone</div>'+clockHTML(T)+'</div>';
       body=pickList(p.table,alive,T,false)+'<p class="picktip">You may protect yourself. Tap to choose.</p>';
-    } else { head+='<div class="phase-title">Night…</div></div>'; body=nightWait("A healer walks among you. Eyes closed."); }
+    } else { head+='<div class="phase-title">Night…</div>'+clockHTML(T)+'</div>'; body=nightWait("A healer walks among you. Eyes closed."); }
   }
   else if(ph==="morning"){
     head+='<div class="phase-title">Morning breaks</div>'+clockHTML(T)+'</div>';
@@ -362,7 +377,7 @@ function submitAct(target){
 
 function renderDead(el,p,T){
   const alive=aliveAtArr(p.table);
-  el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:var(--red)">Eliminated</div><div class="phase-title">You\'re out 💀</div></div>'
+  el.innerHTML='<div class="phase-head"><div class="phase-kicker" style="color:var(--red)">Eliminated</div><div class="phase-title">You\'re out 💀</div>'+clockHTML(T)+'</div>'
     +'<div class="card center"><span class="deadtag">👻 You\'re a ghost</span><p class="muted" style="margin-top:12px">Stay quiet and watch the rest unfold — no hints to the living!</p>'
     +'<p class="muted" style="margin-top:10px">You were the <b style="color:#fff">'+ROLES[p.role].name+'</b> '+ROLES[p.role].em+'</p></div>'
     +'<div class="card"><div class="muted" style="margin-bottom:6px">'+(isNight(T.phase)?"🌙 Night "+T.night:"☀️ Day "+T.night)+' · '+alive.length+' still alive</div>'
@@ -417,7 +432,7 @@ function monitorTable(tk,ps){
   h+='<div class="mmeta"><span>'+alive.length+' / '+tp.length+' alive</span><span>'+(ended?"":"Night "+(T.night||1))+'</span></div>';
   return h+'</div>';
 }
-function phaseLabel(ph){return{roles:"🎭 Role reveal",wolves:"🐺 Wolves choosing a victim",seer:"👁️ Seer inspecting",doctor:"💉 Doctor protecting",morning:"🌅 Morning reveal",discuss:"🗣️ Discussion",vote:"🗳️ Voting",verdict:"⚖️ Verdict",ended:"✅ Game over"}[ph]||ph;}
+function phaseLabel(ph){return{tables:"🚶 Finding tables",roles:"🎭 Role reveal",wolves:"🐺 Wolves choosing a victim",seer:"👁️ Seer inspecting",doctor:"💉 Doctor protecting",morning:"🌅 Morning reveal",discuss:"🗣️ Discussion",vote:"🗳️ Voting",verdict:"⚖️ Verdict",ended:"✅ Game over"}[ph]||ph;}
 
 function kick(id){if(confirm("Remove this player?"))S.child("players/"+id).remove();}
 function resetAll(){if(confirm("Reset everything (players + games)?"))S.set({status:"lobby",game:0,players:{}});}
@@ -427,7 +442,7 @@ function endEvent(){if(confirm("End the whole event?"))S.child("status").set("fi
 function rolesFor(n){const r=[];const w=Math.max(1,Math.round(n/4));for(let i=0;i<w;i++)r.push("wolf");r.push("seer");if(n>=5)r.push("doctor");if(n>=7)r.push("jester");while(r.length<n)r.push("villager");if(r.length>n)r.length=n;return r;}
 function balancedCounts(n){const b=Math.floor(n/3),e=n%3,c=[b,b,b];for(let i=0;i<e;i++)c[2-i]++;return c;}
 function balancedTiers(n){const c=balancedCounts(n),arr=[];c.forEach((x,t)=>{for(let i=0;i<x;i++)arr.push(t);});return shuffle(arr);}
-function freshTable(now){return{phase:"roles",night:1,phaseEndsAt:now+CONFIG.durations.roles*1000,gameEndsAt:now+CONFIG.gameCapMin*60000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
+function freshTable(now){return{phase:"tables",night:1,phaseEndsAt:now+CONFIG.durations.tables*1000,gameEndsAt:now+(CONFIG.gameCapMin*60+CONFIG.durations.tables+CONFIG.durations.roles)*1000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
 
 function startGame(){
   const ps=session.players||{}; const ids=shuffle(Object.keys(ps)); const tiers=balancedTiers(ids.length);
@@ -487,7 +502,9 @@ function advanceTable(tk){
   const T=session.tables[tk],ps=session.players,now=Date.now(),up={},D=CONFIG.durations;
   const setPh=(name,secs)=>{up["tables/"+tk+"/phase"]=name;up["tables/"+tk+"/phaseEndsAt"]=now+secs*1000;up["tables/"+tk+"/act"]=null;};
   const ph=T.phase;
-  if(ph==="roles"){
+  if(ph==="tables"){
+    setPh("roles",D.roles);
+  } else if(ph==="roles"){
     setPh("wolves",D.wolves);
   } else if(ph==="wolves"){
     const votes=T.act||{},tally={};
