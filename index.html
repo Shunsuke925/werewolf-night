@@ -298,6 +298,7 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.rando
 function esc(s){return(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function rand(n){return Math.random()*n|0;}
 function topKey(o){let best=null,bv=-1,ties=[];for(const k in o){if(o[k]>bv){bv=o[k];ties=[k];}else if(o[k]===bv)ties.push(k);}return ties.length?ties[rand(ties.length)]:null;}
+function topKeyStrict(o){let bk=null,bv=-1,tie=false;for(const k in o){if(o[k]>bv){bv=o[k];bk=k;tie=false;}else if(o[k]===bv)tie=true;}return tie?null:bk;}
 function firstVal(o){if(!o)return null;const k=Object.keys(o);return k.length?o[k[0]]:null;}
 function setMood(m){document.body.setAttribute("data-mood",m);}
 function av(n){let h=0;for(let i=0;i<(n||"").length;i++)h=(h*31+n.charCodeAt(i))%360;
@@ -470,7 +471,7 @@ function renderPhase(el,p,T){
   }
   else if(ph==="vote"){
     head+='<div class="phase-title">Vote to Eliminate</div>'+clockHTML(T)+'</div>';
-    body=pickList(p.table,alive.filter(id=>id!==me.id),T,true)+'<p class="picktip">Tap who you think is a wolf. Majority is eliminated.</p>';
+    body=pickList(p.table,alive.filter(id=>id!==me.id),T,true)+'<p class="picktip">Tap who you think is a wolf. Most votes is eliminated — a tie spares everyone.</p>';
   }
   else if(ph==="verdict"){
     head+='<div class="phase-title">The Verdict</div>'+clockHTML(T)+'</div>';
@@ -478,7 +479,11 @@ function renderPhase(el,p,T){
   }
 
   const role=ROLES[p.role];
-  const roleMini='<div class="center" style="margin-top:14px"><span class="role-mini">'+role.em+' You are the '+role.name+'</span></div>';
+  let roleMini='<div class="center" style="margin-top:14px"><span class="role-mini">'+role.em+' You are the '+role.name+'</span></div>';
+  if(p.role==="seer"&&p.seerResult&&!(ph==="seer"&&p.seerResult.night===T.night)){
+    const sr=p.seerResult, c=sr.isWolf?"var(--red)":"var(--teal)";
+    roleMini+='<div class="center" style="margin-top:8px"><span class="pill" style="background:rgba(255,255,255,.05);border:1.5px solid '+c+';color:'+c+';padding:7px 14px;font-size:.88rem">👁️ Your vision: '+esc(sr.name)+(sr.isWolf?' is a Werewolf 🐺':' is not a wolf ✓')+'</span></div>';
+  }
   el.innerHTML=head+body+roleMini+infoBtns();
 }
 
@@ -572,7 +577,7 @@ function resetAll(){if(confirm("Reset everything (players + games)?"))S.set({sta
 function endEvent(){if(confirm("End the whole event?"))S.child("status").set("finished");}
 
 /* ===================== ROLE/TABLE ASSIGNMENT ===================== */
-function rolesFor(n){const r=[];const w=Math.max(1,Math.round(n/4));for(let i=0;i<w;i++)r.push("wolf");r.push("seer");if(n>=5)r.push("doctor");if(n>=7)r.push("jester");while(r.length<n)r.push("villager");if(r.length>n)r.length=n;return r;}
+function rolesFor(n){const r=[];const w=Math.max(1,Math.floor(n/4));for(let i=0;i<w;i++)r.push("wolf");r.push("seer");if(n>=5)r.push("doctor");if(n>=7)r.push("jester");while(r.length<n)r.push("villager");if(r.length>n)r.length=n;return r;}
 function balancedCounts(n){const b=Math.floor(n/3),e=n%3,c=[b,b,b];for(let i=0;i<e;i++)c[2-i]++;return c;}
 function balancedTiers(n){const c=balancedCounts(n),arr=[];c.forEach((x,t)=>{for(let i=0;i<x;i++)arr.push(t);});return shuffle(arr);}
 function freshTable(now){return{phase:"tables",night:1,phaseEndsAt:now+CONFIG.durations.tables*1000,gameEndsAt:now+(CONFIG.gameCapMin*60+CONFIG.durations.tables+CONFIG.durations.roles)*1000,winner:null,msg:"",endMsg:null,act:null,pendingVictim:null};}
@@ -590,9 +595,9 @@ function nextRound(){
   ids.forEach(id=>desired[id]=ps[id].table||0);
   [0,1,2].forEach(tk=>{
     const T=session.tables[tk],winner=T.winner; const tp=ids.filter(id=>ps[id].table===tk);
-    const winners=tp.filter(id=>winner==="wolves"?ps[id].role==="wolf":winner==="jester"?ps[id].role==="jester":(ps[id].role!=="wolf"&&ps[id].role!=="jester"));
-    const upC=winners.filter(id=>ps[id].alive).slice(0,2);
-    const outs=tp.filter(id=>ps[id].outOrder!=null&&!upC.includes(id)).sort((a,b)=>ps[a].outOrder-ps[b].outOrder).slice(0,2);
+    const isWinner=id=>winner==="wolves"?ps[id].role==="wolf":winner==="jester"?ps[id].role==="jester":(ps[id].role!=="wolf"&&ps[id].role!=="jester");
+    const upC=shuffle(tp.filter(isWinner)).slice(0,2);   // random winners move up — dead or alive (Jester included)
+    const outs=shuffle(tp.filter(id=>!isWinner(id))).slice(0,2); // random losing-team players move down
     upC.forEach(id=>desired[id]=Math.min(2,(ps[id].table||0)+1));
     outs.forEach(id=>desired[id]=Math.max(0,(ps[id].table||0)-1));
   });
@@ -677,14 +682,15 @@ function resolveDay(tk,up,now){
   const T=session.tables[tk],ps=session.players,D=CONFIG.durations;
   const votes=T.act||{},tally={};
   Object.entries(votes).forEach(([v,t])=>{if(t&&ps[v]&&ps[v].alive&&ps[v].table===+tk)tally[t]=(tally[t]||0)+1;});
-  const out=topKey(tally); const aliveClone={}; aliveIds(tk).forEach(id=>aliveClone[id]=true);
+  const hasVotes=Object.keys(tally).length>0;
+  const out=topKeyStrict(tally); const aliveClone={}; aliveIds(tk).forEach(id=>aliveClone[id]=true);
   up["tables/"+tk+"/act"]=null;
   if(out){
     up["players/"+out+"/alive"]=false; up["players/"+out+"/outOrder"]=nextOut(tk); delete aliveClone[out];
     const role=ps[out].role;
     up["tables/"+tk+"/msg"]="The village voted out "+ps[out].name+" — they were a "+ROLES[role].name+" "+ROLES[role].em+".";
     if(role==="jester"){endTable(up,tk,"jester");return;}
-  } else { up["tables/"+tk+"/msg"]="No majority — nobody was eliminated."; }
+  } else { up["tables/"+tk+"/msg"]=hasVotes?"⚖️ The vote was TIED — nobody was eliminated.":"No votes — nobody was eliminated."; }
   const w=winState(aliveClone,ps);
   if(w){endTable(up,tk,w);} else {up["tables/"+tk+"/phase"]="verdict";up["tables/"+tk+"/phaseEndsAt"]=now+D.verdict*1000;}
 }
@@ -727,7 +733,7 @@ function openModal(which){
       +step(2,"<b>Night 🌙</b> — the app wakes each role in turn. If it's your turn (Wolf / Seer / Doctor) you'll tap your choice. Everyone else: eyes closed, just wait.")
       +step(3,"<b>Morning ☀️</b> — the app reveals who the wolves ate.")
       +step(4,"<b>Discuss</b> — talk it out at your table: who seems like a wolf?")
-      +step(5,"<b>Vote 🗳️</b> — everyone taps who to eliminate. The app counts the votes and removes the loser.")
+      +step(5,"<b>Vote 🗳️</b> — everyone taps who to eliminate. The app counts the votes and removes the loser. A tied vote spares everyone.")
       +step(6,"<b>Win</b> — Village wins when all wolves are gone. Wolves win when they match the villagers. The 🤡 Jester wins if YOU vote them out! If 30 min runs out, the wolves win.")
       +'<h2 style="font-size:1.2rem;margin-top:16px">🏆 The Table Ladder</h2><p class="muted" style="margin-top:6px">Three tables — 🥇 Gold, 🥈 Silver, 🥉 Bronze. After each round, winners who survived move <b>up</b>, first-out players move <b>down</b> — all automatic. Climb to the Gold table to rule the night!</p>';
   }
